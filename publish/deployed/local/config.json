@@ -229,5 +229,80 @@
 	},
 	"SynthiCEX": {
 		"deploy": true
+	},
+	"ProxyERC20sUSD": {
+		"deploy": true
+	},
+	"TokenStatesXRP": {
+		"deploy": true
+	},
+	"ProxysXRP": {
+		"deploy": true
+	},
+	"SynthsXRP": {
+		"deploy": true
+	},
+	"TokenStatesLTC": {
+		"deploy": true
+	},
+	"ProxysLTC": {
+		"deploy": true
+	},
+	"SynthsLTC": {
+		"deploy": true
+	},
+	"TokenStatesLINK": {
+		"deploy": true
+	},
+	"ProxysLINK": {
+		"deploy": true
+	},
+	"SynthsLINK": {
+		"deploy": true
+	},
+	"TokenStatesDEFI": {
+		"deploy": true
+	},
+	"ProxysDEFI": {
+		"deploy": true
+	},
+	"SynthsDEFI": {
+		"deploy": true
+	},
+	"TokenStateiXRP": {
+		"deploy": true
+	},
+	"ProxyiXRP": {
+		"deploy": true
+	},
+	"SynthiXRP": {
+		"deploy": true
+	},
+	"TokenStateiLINK": {
+		"deploy": true
+	},
+	"ProxyiLINK": {
+		"deploy": true
+	},
+	"SynthiLINK": {
+		"deploy": true
+	},
+	"TokenStateiLTC": {
+		"deploy": true
+	},
+	"ProxyiLTC": {
+		"deploy": true
+	},
+	"SynthiLTC": {
+		"deploy": true
+	},
+	"TokenStateiDEFI": {
+		"deploy": true
+	},
+	"ProxyiDEFI": {
+		"deploy": true
+	},
+	"SynthiDEFI": {
+		"deploy": true
 	}
 }

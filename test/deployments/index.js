@@ -9,8 +9,9 @@ const axios = require('axios');
 
 require('dotenv').config();
 const { loadConnections, stringify } = require('../../publish/src/util');
-
 const { toBytes32, getSynths, getTarget, getSource } = require('../..');
+
+const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
 describe('deployments', () => {
 	['kovan', 'rinkeby', 'ropsten', 'mainnet'].forEach(network => {
@@ -149,7 +150,14 @@ describe('deployments', () => {
 									apikey: process.env.ETHERSCAN_KEY,
 								},
 							});
-							const result = JSON.parse(response.data.result);
+
+							let result;
+							try {
+								result = JSON.parse(response.data.result);
+							} catch (err) {
+								console.log('Error Etherscan returned the following:', response.data.result);
+								throw err;
+							}
 
 							const sortByName = (a, b) =>
 								(a.name || 'constructor') > (b.name || 'constructor') ? 1 : -1;
@@ -158,7 +166,7 @@ describe('deployments', () => {
 								delete entry.signature;
 								// Some contracts, such as ProxyERC20 were deployed with different function
 								// input names than currently in the code, so reomve these from the check
-								// specificall balanceOf("owner") was changed to "account"
+								// specifically balanceOf(address owner) was changed to balanceOf(address account)
 								(entry.inputs || []).forEach(input => {
 									input.name = '';
 								});
@@ -186,6 +194,9 @@ describe('deployments', () => {
 							fs.writeFileSync(path.join(__dirname, 'temp.expected.json'), expected);
 
 							assert.strictEqual(actual, expected);
+							// wait 1.5s in order to prevent Etherscan rate limits (note parallel tests in CI
+							// can trigger the limit)
+							await sleep(1500);
 						});
 					});
 				});
