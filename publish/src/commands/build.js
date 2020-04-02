@@ -21,7 +21,7 @@ const DEFAULTS = {
 };
 const CONTRACT_OVERRIDES = require('../contract-overrides');
 
-const build = async ({ buildPath = DEFAULTS.buildPath, showWarnings, showContractSize } = {}) => {
+const build = async ({ buildPath = DEFAULTS.buildPath, showWarnings, showContractSize, useOVM } = {}) => {
 	console.log(gray('Starting build...'));
 
 	if (!fs.existsSync(buildPath)) {
@@ -67,6 +67,7 @@ const build = async ({ buildPath = DEFAULTS.buildPath, showWarnings, showContrac
 		};
 		const { artifacts, errors, warnings } = compile({
 			sources: source,
+			useOVM,
 			runs: value.runs,
 		});
 
@@ -87,7 +88,8 @@ const build = async ({ buildPath = DEFAULTS.buildPath, showWarnings, showContrac
 			[key]: sources[key],
 		};
 		const { artifacts, errors, warnings } = compile({
-			sources: source
+			sources: source,
+			useOVM
 		});
 		console.log(
 			yellow(`Compiled with ${warnings.length} warnings and ${errors.length} errors`)
@@ -181,5 +183,6 @@ module.exports = {
 			.option('-b, --build-path [value]', 'Build path for built files', DEFAULTS.buildPath)
 			.option('-s, --show-contract-size', 'Show contract sizes')
 			.option('-w, --show-warnings', 'Show warnings')
+			.option('-o, --use-OVM', 'Transpile to OVM')
 			.action(build),
 };
