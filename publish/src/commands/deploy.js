@@ -111,7 +111,7 @@ const deploy = async ({
 	});
 
 	// allow local deployments to use the private key passed as a CLI option
-	if (network !== 'local' || !privateKey) {
+	if (network !== 'local' || network !== 'ovm' || !privateKey) {
 		privateKey = envPrivateKey;
 	}
 
@@ -170,7 +170,7 @@ const deploy = async ({
 		currentLastMintEvent =
 			inflationStartDate + currentWeekOfInflation * secondsInWeek + mintingBuffer;
 	} catch (err) {
-		if (network === 'local') {
+		if (network === 'local' || network === 'ovm') {
 			currentSynthetixSupply = w3utils.toWei((100e6).toString());
 			currentWeekOfInflation = 0;
 			currentLastMintEvent = 0;
@@ -189,7 +189,7 @@ const deploy = async ({
 		const oldFeePool = getExistingContract({ contract: 'FeePool' });
 		currentExchangeFee = await oldFeePool.methods.exchangeFeeRate().call();
 	} catch (err) {
-		if (network === 'local') {
+		if (network === 'local' || network === 'ovm') {
 			currentExchangeFee = w3utils.toWei('0.003'.toString());
 		} else {
 			console.error(
@@ -209,7 +209,7 @@ const deploy = async ({
 			oracleExrates = await oldExrates.methods.oracle().call();
 		}
 	} catch (err) {
-		if (network === 'local') {
+		if (network === 'local' || network === 'ovm') {
 			currentSynthetixPrice = w3utils.toWei('0.2');
 			oracleExrates = account;
 			oldExrates = undefined; // unset to signify that a fresh one will be deployed
@@ -238,7 +238,7 @@ const deploy = async ({
 
 	let aggregatedPriceResults = 'N/A';
 
-	if (oldExrates && network !== 'local') {
+	if (oldExrates && network !== 'local' && network !== 'ovm') {
 		const padding = '\n\t\t\t\t';
 		const aggResults = await checkAggregatorPrices({
 			network,
@@ -335,7 +335,7 @@ const deploy = async ({
 
 		// now update the flags to indicate it no longer needs deployment,
 		// ignoring this step for local, which wants a full deployment by default
-		if (network !== 'local' && !dryRun) {
+		if (network !== 'local' && network !== 'ovm' && !dryRun) {
 			updatedConfig[name] = { deploy: false };
 			fs.writeFileSync(configFile, stringify(updatedConfig));
 		}
@@ -813,7 +813,7 @@ const deploy = async ({
 				const oldSynth = getExistingContract({ contract: `Synth${currencyKey}` });
 				originalTotalSupply = await oldSynth.methods.totalSupply().call();
 			} catch (err) {
-				if (network !== 'local') {
+				if (network !== 'local' && network !== 'ovm' ) {
 					// only throw if not local - allows local environments to handle both new
 					// and updating configurations
 					throw err;
@@ -1118,23 +1118,23 @@ const deploy = async ({
 
 	if (addressResolver) {
 		const expectedAddressesInResolver = [
-			// { name: 'DelegateApprovals', address: addressOf(feePoolDelegateApprovals) },
-			// { name: 'Depot', address: addressOf(depot) },
-			// { name: 'EtherCollateral', address: addressOf(etherCollateral) },
-			// { name: 'Exchanger', address: addressOf(exchanger) },
+			{ name: 'DelegateApprovals', address: addressOf(feePoolDelegateApprovals) },
+			{ name: 'Depot', address: addressOf(depot) },
+			{ name: 'EtherCollateral', address: addressOf(etherCollateral) },
+			{ name: 'Exchanger', address: addressOf(exchanger) },
 			{ name: 'ExchangeRates', address: addressOf(exchangeRates) },
-			// { name: 'ExchangeState', address: addressOf(exchangeState) },
-			// { name: 'FeePool', address: addressOf(feePool) },
+			{ name: 'ExchangeState', address: addressOf(exchangeState) },
+			{ name: 'FeePool', address: addressOf(feePool) },
 			// { name: 'FeePoolEternalStorage', address: addressOf(feePoolEternalStorage) },
-			// { name: 'FeePoolState', address: addressOf(feePoolState) },
-			// { name: 'Issuer', address: addressOf(issuer) },
-			// { name: 'IssuanceEternalStorage', address: addressOf(issuanceEternalStorage) },
-			// { name: 'RewardEscrow', address: addressOf(rewardEscrow) },
-			// { name: 'RewardsDistribution', address: addressOf(rewardsDistribution) },
-			// { name: 'SupplySchedule', address: addressOf(supplySchedule) },
+			{ name: 'FeePoolState', address: addressOf(feePoolState) },
+			{ name: 'Issuer', address: addressOf(issuer) },
+			{ name: 'IssuanceEternalStorage', address: addressOf(issuanceEternalStorage) },
+			{ name: 'RewardEscrow', address: addressOf(rewardEscrow) },
+			{ name: 'RewardsDistribution', address: addressOf(rewardsDistribution) },
+			{ name: 'SupplySchedule', address: addressOf(supplySchedule) },
 			{ name: 'Synthetix', address: addressOf(synthetix) },
-			// { name: 'SynthetixEscrow', address: addressOf(synthetixEscrow) },
-			// { name: 'SynthetixState', address: addressOf(synthetixState) },
+			{ name: 'SynthetixEscrow', address: addressOf(synthetixEscrow) },
+			{ name: 'SynthetixState', address: addressOf(synthetixState) },
 			{ name: 'SynthsUSD', address: addressOf(deployer.deployedContracts['SynthsUSD']) },
 			{ name: 'SynthsETH', address: addressOf(deployer.deployedContracts['SynthsETH']) },
 		];

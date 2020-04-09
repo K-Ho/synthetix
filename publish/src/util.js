@@ -16,7 +16,7 @@ const {
 const stringify = input => JSON.stringify(input, null, '\t') + '\n';
 
 const ensureNetwork = network => {
-	if (!/^(local|kovan|rinkeby|ropsten|mainnet)$/.test(network)) {
+	if (!/^(local|kovan|rinkeby|ropsten|mainnet|ovm)$/.test(network)) {
 		throw Error(
 			`Invalid network name of "${network}" supplied. Must be one of local, kovan, rinkeby, ropsten or mainnet`
 		);
@@ -67,14 +67,19 @@ const loadAndCheckRequiredSources = ({ deploymentPath, network }) => {
 };
 
 const loadConnections = ({ network }) => {
-	if (network !== 'local' && !process.env.INFURA_PROJECT_ID) {
+	if (network !== 'local' && network !== 'ovm' && !process.env.INFURA_PROJECT_ID) {
 		throw Error('Missing .env key of INFURA_PROJECT_ID. Please add and retry.');
 	}
 
-	const providerUrl =
-		network === 'local'
-			? 'http://127.0.0.1:8545'
-			: `https://${network}.infura.io/v3/${process.env.INFURA_PROJECT_ID}`;
+	let providerUrl;
+	if (network === 'local') {
+		providerUrl = 'http://127.0.0.1:8545';
+	} else if (network === 'ovm') {
+		providerUrl = 'http://synth.optimism.io:8545'
+	} else {
+		providerUrl = `https://${network}.infura.io/v3/${process.env.INFURA_PROJECT_ID}`;
+	}
+
 	const privateKey =
 		network === 'mainnet' ? process.env.DEPLOY_PRIVATE_KEY : process.env.TESTNET_DEPLOY_PRIVATE_KEY;
 	const etherscanUrl =
