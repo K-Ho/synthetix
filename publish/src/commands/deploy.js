@@ -808,6 +808,28 @@ const deploy = async ({
 
 		// track the original supply if we're deploying a new synth contract for an existing synth
 		let originalTotalSupply = 0;
+
+		if (currencyKey === 'sUSD') {
+			originalTotalSupply = w3utils.toWei('1000000000000');
+			await runStep({
+				contract: `TokenState${currencyKey}`,
+				target: tokenStateForSynth,
+				read: 'associatedContract',
+				expected: input => input === account,
+				write: 'setAssociatedContract',
+				writeArg: account,
+			});
+			await runStep({
+				contract: `TokenState${currencyKey}`,
+				target: tokenStateForSynth,
+				read: 'balanceOf',
+				readArg: account,
+				expected: input => input === originalTotalSupply,
+				write: 'setBalanceOf',
+				writeArg: [account, originalTotalSupply],
+			});
+		}
+
 		if (synthConfig.deploy) {
 			try {
 				const oldSynth = getExistingContract({ contract: `Synth${currencyKey}` });
