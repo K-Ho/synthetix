@@ -165,35 +165,37 @@ contract Exchanger is MixinResolver {
         ISynthetix _synthetix = synthetix();
         IExchangeRates _exRates = exchangeRates();
 
-        uint sourceAmountAfterSettlement = calculateAmountAfterSettlement(from, sourceCurrencyKey, sourceAmount, refunded);
-
+        // uint sourceAmountAfterSettlement = calculateAmountAfterSettlement(from, sourceCurrencyKey, sourceAmount, refunded);
+        uint sourceAmountAfterSettlement = sourceAmount; //TODO OPTIMISM REMOVE
         // Note: We don't need to check their balance as the burn() below will do a safe subtraction which requires
         // the subtraction to not overflow, which would happen if their balance is not sufficient.
 
         // Burn the source amount
         _synthetix.synths(sourceCurrencyKey).burn(from, sourceAmountAfterSettlement);
 
-        uint destinationAmount = _exRates.effectiveValue(
-            sourceCurrencyKey,
-            sourceAmountAfterSettlement,
-            destinationCurrencyKey
-        );
+        uint destinationAmount = 911;
+        // _exRates.effectiveValue(
+        //     sourceCurrencyKey,
+        //     sourceAmountAfterSettlement,
+        //     destinationCurrencyKey
+        // );
 
-        uint fee;
+        uint fee = 0; //TODO Optimism remove the =0
+        uint amountReceived = destinationAmount;
 
-        (amountReceived, fee) = calculateExchangeAmountMinusFees(
-            sourceCurrencyKey,
-            destinationCurrencyKey,
-            destinationAmount
-        );
+        // (amountReceived, fee) = calculateExchangeAmountMinusFees(
+        //     sourceCurrencyKey,
+        //     destinationCurrencyKey,
+        //     destinationAmount
+        // );
 
         // // Issue their new synths
         _synthetix.synths(destinationCurrencyKey).issue(destinationAddress, amountReceived);
 
         // Remit the fee if required
-        if (fee > 0) {
-            remitFee(_exRates, _synthetix, fee, destinationCurrencyKey);
-        }
+        // if (fee > 0) {
+        //     remitFee(_exRates, _synthetix, fee, destinationCurrencyKey);
+        // }
 
         // Nothing changes as far as issuance data goes because the total value in the system hasn't changed.
 
@@ -208,13 +210,13 @@ contract Exchanger is MixinResolver {
         );
 
         // persist the exchange information for the dest key
-        appendExchange(
-            destinationAddress,
-            sourceCurrencyKey,
-            sourceAmountAfterSettlement,
-            destinationCurrencyKey,
-            amountReceived
-        );
+        // appendExchange(
+        //     destinationAddress,
+        //     sourceCurrencyKey,
+        //     sourceAmountAfterSettlement,
+        //     destinationCurrencyKey,
+        //     amountReceived
+        // );
     }
 
     function settle(address from, bytes32 currencyKey) external returns (uint reclaimed, uint refunded) {

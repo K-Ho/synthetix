@@ -1147,7 +1147,7 @@ contract('Exchanger (via Synthetix)', async accounts => {
 				reason: 'Only synthetix or a synth contract can perform this action',
 			});
 		});
-		it('should allow a user to exchange the synths they hold in one flavour for another', async () => {
+		it.only('should allow a user to exchange the synths they hold in one flavour for another', async () => {
 			// Give some SNX to account1
 			await synthetix.transfer(account1, toUnit('300000'), {
 				from: owner,
@@ -1158,7 +1158,7 @@ contract('Exchanger (via Synthetix)', async accounts => {
 
 			// Get the exchange fee in USD
 			const exchangeFeeUSD = await feePool.exchangeFeeIncurred(amountIssued);
-
+			
 			// Exchange sUSD to sAUD
 			await synthetix.exchange(sUSD, amountIssued, sAUD, { from: account1 });
 
