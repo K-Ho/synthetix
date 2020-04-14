@@ -164,24 +164,6 @@
 	"SynthsETH": {
 		"deploy": true
 	},
-	"TokenStatesBNB": {
-		"deploy": true
-	},
-	"ProxysBNB": {
-		"deploy": true
-	},
-	"SynthsBNB": {
-		"deploy": true
-	},
-	"TokenStatesMKR": {
-		"deploy": true
-	},
-	"ProxysMKR": {
-		"deploy": true
-	},
-	"SynthsMKR": {
-		"deploy": true
-	},
 	"TokenStatesTRX": {
 		"deploy": true
 	},
@@ -218,24 +200,6 @@
 	"SynthiETH": {
 		"deploy": true
 	},
-	"TokenStateiBNB": {
-		"deploy": true
-	},
-	"ProxyiBNB": {
-		"deploy": true
-	},
-	"SynthiBNB": {
-		"deploy": true
-	},
-	"TokenStateiMKR": {
-		"deploy": true
-	},
-	"ProxyiMKR": {
-		"deploy": true
-	},
-	"SynthiMKR": {
-		"deploy": true
-	},
 	"TokenStateiTRX": {
 		"deploy": true
 	},
@@ -252,24 +216,6 @@
 		"deploy": true
 	},
 	"SynthiXTZ": {
-		"deploy": true
-	},
-	"TokenStatesCEX": {
-		"deploy": true
-	},
-	"ProxysCEX": {
-		"deploy": true
-	},
-	"SynthsCEX": {
-		"deploy": true
-	},
-	"TokenStateiCEX": {
-		"deploy": true
-	},
-	"ProxyiCEX": {
-		"deploy": true
-	},
-	"SynthiCEX": {
 		"deploy": true
 	},
 	"ProxyERC20sUSD": {
@@ -302,15 +248,6 @@
 	"SynthsLINK": {
 		"deploy": true
 	},
-	"TokenStatesDEFI": {
-		"deploy": true
-	},
-	"ProxysDEFI": {
-		"deploy": true
-	},
-	"SynthsDEFI": {
-		"deploy": true
-	},
 	"TokenStateiXRP": {
 		"deploy": true
 	},
@@ -336,15 +273,6 @@
 		"deploy": true
 	},
 	"SynthiLTC": {
-		"deploy": true
-	},
-	"TokenStateiDEFI": {
-		"deploy": true
-	},
-	"ProxyiDEFI": {
-		"deploy": true
-	},
-	"SynthiDEFI": {
 		"deploy": true
 	}
 }
