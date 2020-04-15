@@ -17,7 +17,7 @@ contract ExchangeState is State {
 
     mapping(address => mapping(bytes32 => ExchangeEntry[])) public exchanges;
 
-    uint public maxEntriesInQueue = 12;
+    uint public maxEntriesInQueue = 50;
 
     constructor(address _owner, address _associatedContract) public State(_owner, _associatedContract) {}
 
