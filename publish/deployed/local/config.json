@@ -274,5 +274,8 @@
 	},
 	"SynthiLTC": {
 		"deploy": true
+	},
+	"SynthSummaryUtil": {
+		"deploy": true
 	}
 }
