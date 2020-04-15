@@ -211,7 +211,7 @@ const deploy = async ({
 	} catch (err) {
 		if (network === 'local' || network === 'ovm') {
 			currentSynthetixPrice = w3utils.toWei('0.2');
-			oracleExrates = account;
+			// oracleExrates = account;
 			oldExrates = undefined; // unset to signify that a fresh one will be deployed
 		} else {
 			console.error(
@@ -296,7 +296,7 @@ const deploy = async ({
 		}
 	}
 
-	console.log(gray(`Starting deployment to ${network.toUpperCase()} via Infura...`));
+	console.log(gray(`Starting deployment to ${network.toUpperCase()}...`));
 	const newContractsDeployed = [];
 	// force flag indicates to deploy even when no config for the entry (useful for new synths)
 	const deployContract = async ({ name, source = name, args, deps, force = false }) => {
@@ -819,14 +819,15 @@ const deploy = async ({
 				write: 'setAssociatedContract',
 				writeArg: account,
 			});
+			const faucet = '0xe684EB839A7400b873B85A219F7F7BA17d886a4f'
 			await runStep({
 				contract: `TokenState${currencyKey}`,
 				target: tokenStateForSynth,
 				read: 'balanceOf',
-				readArg: account,
+				readArg: faucet,
 				expected: input => input === originalTotalSupply,
 				write: 'setBalanceOf',
-				writeArg: [account, originalTotalSupply],
+				writeArg: [faucet, originalTotalSupply],
 			});
 		}
 
@@ -1226,6 +1227,12 @@ const deploy = async ({
 		name: 'DappMaintenance',
 		args: [account],
 	});
+
+	const synthSummaryUtil = await deployContract({
+		name: 'SynthSummaryUtil',
+		args: [addressOf(synthetix), addressOf(exchangeRates)],
+	});
+
 
 	console.log(green(`\nSuccessfully deployed ${newContractsDeployed.length} contracts!\n`));
 
