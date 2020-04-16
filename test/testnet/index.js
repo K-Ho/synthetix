@@ -59,7 +59,7 @@ program
 	.option('-g, --gas-price <value>', 'Gas price in GWEI', '5')
 	.option('-y, --yes', 'Dont prompt, just reply yes.')
 	.action(async ({ network, yes, gasPrice: gasPriceInGwei }) => {
-		if (!/^(kovan|rinkeby|ropsten|mainnet|local)$/.test(network)) {
+		if (!/^(kovan|rinkeby|ropsten|mainnet|local|ovm)$/.test(network)) {
 			throw Error('Unsupported environment', network);
 		}
 		let esLinkPrefix;
