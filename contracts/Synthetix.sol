@@ -141,25 +141,25 @@ contract Synthetix is ExternStateToken, MixinResolver {
     //     return _totalIssuedSynths(currencyKey, true);
     // }
 
-    // /**
-    //  * @notice Returns the currencyKeys of availableSynths for rate checking
-    //  */
-    // function availableCurrencyKeys() public view returns (bytes32[] memory) {
-    //     bytes32[] memory currencyKeys = new bytes32[](availableSynths.length);
+    /**
+     * @notice Returns the currencyKeys of availableSynths for rate checking
+     */
+    function availableCurrencyKeys() public view returns (bytes32[] memory) {
+        bytes32[] memory currencyKeys = new bytes32[](availableSynths.length);
 
-    //     for (uint i = 0; i < availableSynths.length; i++) {
-    //         currencyKeys[i] = synthsByAddress[address(availableSynths[i])];
-    //     }
+        for (uint i = 0; i < availableSynths.length; i++) {
+            currencyKeys[i] = synthsByAddress[address(availableSynths[i])];
+        }
 
-    //     return currencyKeys;
-    // }
+        return currencyKeys;
+    }
 
-    // /**
-    //  * @notice Returns the count of available synths in the system, which you can use to iterate availableSynths
-    //  */
-    // function availableSynthCount() public view returns (uint) {
-    //     return availableSynths.length;
-    // }
+    /**
+     * @notice Returns the count of available synths in the system, which you can use to iterate availableSynths
+     */
+    function availableSynthCount() public view returns (uint) {
+        return availableSynths.length;
+    }
 
     // function isWaitingPeriod(bytes32 currencyKey) external view returns (bool) {
     //     return exchanger().maxSecsLeftInWaitingPeriod(messageSender, currencyKey) > 0;
