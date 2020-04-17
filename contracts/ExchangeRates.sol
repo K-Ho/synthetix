@@ -37,7 +37,7 @@ contract ExchangeRates is SelfDestructible {
     uint private constant ORACLE_FUTURE_LIMIT = 10 minutes;
 
     // How long will the contract assume the rate of any asset is correct
-    uint public rateStalePeriod = 3 hours;
+    uint public rateStalePeriod = 24 hours;
 
     // For inverted prices, keep a mapping of their entry, limits and frozen status
     struct InversePricing {
