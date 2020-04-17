@@ -224,7 +224,7 @@ program
 			const feePeriodLength = await feePool.methods.FEE_PERIOD_LENGTH().call();
 
 			// Unless on local, check feePeriods are imported for feePool correctly with feePeriodId set
-			if (network !== 'local') {
+			if (network !== 'local' && network !== 'ovm') {
 				for (let i = 0; i < feePeriodLength; i++) {
 					const period = await feePool.methods.recentFeePeriods(i).call();
 					if (period.feePeriodId === '0') {
