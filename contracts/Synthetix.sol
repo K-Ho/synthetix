@@ -182,43 +182,43 @@ contract Synthetix is ExternStateToken, MixinResolver {
         synthsByAddress[address(synth)] = currencyKey;
     }
 
-    // /**
-    //  * @notice Remove an associated Synth contract from the Synthetix system
-    //  * @dev Only the contract owner may call this.
-    //  */
-    // function removeSynth(bytes32 currencyKey) external optionalProxy_onlyOwner {
-    //     require(address(synths[currencyKey]) != address(0), "Synth does not exist");
-    //     require(synths[currencyKey].totalSupply() == 0, "Synth supply exists");
-    //     require(currencyKey != sUSD, "Cannot remove synth");
+    /**
+     * @notice Remove an associated Synth contract from the Synthetix system
+     * @dev Only the contract owner may call this.
+     */
+    function removeSynth(bytes32 currencyKey) external optionalProxy_onlyOwner {
+        require(address(synths[currencyKey]) != address(0), "Synth does not exist");
+        require(synths[currencyKey].totalSupply() == 0, "Synth supply exists");
+        require(currencyKey != sUSD, "Cannot remove synth");
 
-    //     // Save the address we're removing for emitting the event at the end.
-    //     address synthToRemove = address(synths[currencyKey]);
+        // Save the address we're removing for emitting the event at the end.
+        address synthToRemove = address(synths[currencyKey]);
 
-    //     // Remove the synth from the availableSynths array.
-    //     for (uint i = 0; i < availableSynths.length; i++) {
-    //         if (address(availableSynths[i]) == synthToRemove) {
-    //             delete availableSynths[i];
+        // Remove the synth from the availableSynths array.
+        for (uint i = 0; i < availableSynths.length; i++) {
+            if (address(availableSynths[i]) == synthToRemove) {
+                delete availableSynths[i];
 
-    //             // Copy the last synth into the place of the one we just deleted
-    //             // If there's only one synth, this is synths[0] = synths[0].
-    //             // If we're deleting the last one, it's also a NOOP in the same way.
-    //             availableSynths[i] = availableSynths[availableSynths.length - 1];
+                // Copy the last synth into the place of the one we just deleted
+                // If there's only one synth, this is synths[0] = synths[0].
+                // If we're deleting the last one, it's also a NOOP in the same way.
+                availableSynths[i] = availableSynths[availableSynths.length - 1];
 
-    //             // Decrease the size of the array by one.
-    //             availableSynths.length--;
+                // Decrease the size of the array by one.
+                availableSynths.length--;
 
-    //             break;
-    //         }
-    //     }
+                break;
+            }
+        }
 
-    //     // And remove it from the synths mapping
-    //     delete synthsByAddress[address(synths[currencyKey])];
-    //     delete synths[currencyKey];
+        // And remove it from the synths mapping
+        delete synthsByAddress[address(synths[currencyKey])];
+        delete synths[currencyKey];
 
-    //     // Note: No event here as Synthetix contract exceeds max contract size
-    //     // with these events, and it's unlikely people will need to
-    //     // track these events specifically.
-    // }
+        // Note: No event here as Synthetix contract exceeds max contract size
+        // with these events, and it's unlikely people will need to
+        // track these events specifically.
+    }
 
     /**
      * @notice ERC20 transfer function.
