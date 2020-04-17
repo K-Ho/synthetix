@@ -6,13 +6,13 @@ import "./MixinResolver.sol";
 // import "./SupplySchedule.sol";
 import "./Synth.sol";
 // import "./interfaces/ISynthetixState.sol";
-// import "./interfaces/IExchangeRates.sol";
+import "./interfaces/IExchangeRates.sol";
 // import "./interfaces/ISynthetixEscrow.sol";
 // import "./interfaces/IFeePool.sol";
 // import "./interfaces/IRewardsDistribution.sol";
 // import "./interfaces/IExchanger.sol";
 import "./interfaces/IIssuer.sol";
-// import "./interfaces/IEtherCollateral.sol";
+import "./interfaces/IEtherCollateral.sol";
 
 
 /**
@@ -55,9 +55,9 @@ contract Synthetix is ExternStateToken, MixinResolver {
         return IExchanger(resolver.requireAndGetAddress("Exchanger", "Missing Exchanger address"));
     }
 
-    // function etherCollateral() internal view returns (IEtherCollateral) {
-    //     return IEtherCollateral(resolver.requireAndGetAddress("EtherCollateral", "Missing EtherCollateral address"));
-    // }
+    function etherCollateral() internal view returns (IEtherCollateral) {
+        return IEtherCollateral(resolver.requireAndGetAddress("EtherCollateral", "Missing EtherCollateral address"));
+    }
 
     function issuer() internal view returns (IIssuer) {
         return IIssuer(resolver.requireAndGetAddress("Issuer", "Missing Issuer address"));
@@ -67,9 +67,9 @@ contract Synthetix is ExternStateToken, MixinResolver {
     //     return ISynthetixState(resolver.requireAndGetAddress("SynthetixState", "Missing SynthetixState address"));
     // }
 
-    // function exchangeRates() internal view returns (IExchangeRates) {
-    //     return IExchangeRates(resolver.requireAndGetAddress("ExchangeRates", "Missing ExchangeRates address"));
-    // }
+    function exchangeRates() internal view returns (IExchangeRates) {
+        return IExchangeRates(resolver.requireAndGetAddress("ExchangeRates", "Missing ExchangeRates address"));
+    }
 
     // function feePool() internal view returns (IFeePool) {
     //     return IFeePool(resolver.requireAndGetAddress("FeePool", "Missing FeePool address"));
@@ -94,44 +94,44 @@ contract Synthetix is ExternStateToken, MixinResolver {
     //         );
     // }
 
-    // /**
-    //  * @notice Total amount of synths issued by the system, priced in currencyKey
-    //  * @param currencyKey The currency to value the synths in
-    //  */
-    // function _totalIssuedSynths(bytes32 currencyKey, bool excludeEtherCollateral) internal view returns (uint) {
-    //     IExchangeRates exRates = exchangeRates();
-    //     uint total = 0;
-    //     uint currencyRate = exRates.rateForCurrency(currencyKey);
+    /**
+     * @notice Total amount of synths issued by the system, priced in currencyKey
+     * @param currencyKey The currency to value the synths in
+     */
+    function _totalIssuedSynths(bytes32 currencyKey, bool excludeEtherCollateral) internal view returns (uint) {
+        IExchangeRates exRates = exchangeRates();
+        uint total = 0;
+        uint currencyRate = exRates.rateForCurrency(currencyKey);
 
-    //     (uint[] memory rates, bool anyRateStale) = exRates.ratesAndStaleForCurrencies(availableCurrencyKeys());
-    //     require(!anyRateStale, "Rates are stale");
+        (uint[] memory rates, bool anyRateStale) = exRates.ratesAndStaleForCurrencies(availableCurrencyKeys());
+        require(!anyRateStale, "Rates are stale");
 
-    //     for (uint i = 0; i < availableSynths.length; i++) {
-    //         // What's the total issued value of that synth in the destination currency?
-    //         // Note: We're not using exchangeRates().effectiveValue() because we don't want to go get the
-    //         //       rate for the destination currency and check if it's stale repeatedly on every
-    //         //       iteration of the loop
-    //         uint totalSynths = availableSynths[i].totalSupply();
+        for (uint i = 0; i < availableSynths.length; i++) {
+            // What's the total issued value of that synth in the destination currency?
+            // Note: We're not using exchangeRates().effectiveValue() because we don't want to go get the
+            //       rate for the destination currency and check if it's stale repeatedly on every
+            //       iteration of the loop
+            uint totalSynths = availableSynths[i].totalSupply();
 
-    //         // minus total issued synths from Ether Collateral from sETH.totalSupply()
-    //         if (excludeEtherCollateral && availableSynths[i] == synths["sETH"]) {
-    //             totalSynths = totalSynths.sub(etherCollateral().totalIssuedSynths());
-    //         }
+            // minus total issued synths from Ether Collateral from sETH.totalSupply()
+            if (excludeEtherCollateral && availableSynths[i] == synths["sETH"]) {
+                totalSynths = totalSynths.sub(etherCollateral().totalIssuedSynths());
+            }
 
-    //         uint synthValue = totalSynths.multiplyDecimalRound(rates[i]);
-    //         total = total.add(synthValue);
-    //     }
+            uint synthValue = totalSynths.multiplyDecimalRound(rates[i]);
+            total = total.add(synthValue);
+        }
 
-    //     return total.divideDecimalRound(currencyRate);
-    // }
+        return total.divideDecimalRound(currencyRate);
+    }
 
-    // /**
-    //  * @notice Total amount of synths issued by the system priced in currencyKey
-    //  * @param currencyKey The currency to value the synths in
-    //  */
-    // function totalIssuedSynths(bytes32 currencyKey) public view returns (uint) {
-    //     return _totalIssuedSynths(currencyKey, false);
-    // }
+    /**
+     * @notice Total amount of synths issued by the system priced in currencyKey
+     * @param currencyKey The currency to value the synths in
+     */
+    function totalIssuedSynths(bytes32 currencyKey) public view returns (uint) {
+        return _totalIssuedSynths(currencyKey, false);
+    }
 
     // /**
     //  * @notice Total amount of synths issued by the system priced in currencyKey, excluding ether collateral
