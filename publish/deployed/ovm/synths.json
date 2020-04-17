@@ -1,59 +1,10 @@
 [
 	{
-		"name": "sEUR",
-		"asset": "EUR",
-		"category": "forex",
-		"sign": "€",
-		"desc": "Euros"
-	},
-	{
-		"name": "sJPY",
-		"asset": "JPY",
-		"category": "forex",
-		"sign": "¥",
-		"desc": "Japanese Yen"
-	},
-	{
 		"name": "sUSD",
 		"asset": "USD",
 		"category": "forex",
 		"sign": "$",
 		"desc": "US Dollars"
-	},
-	{
-		"name": "sAUD",
-		"asset": "AUD",
-		"category": "forex",
-		"sign": "$",
-		"desc": "Australian Dollars"
-	},
-	{
-		"name": "sGBP",
-		"asset": "GBP",
-		"category": "forex",
-		"sign": "£",
-		"desc": "Pound Sterling"
-	},
-	{
-		"name": "sCHF",
-		"asset": "CHF",
-		"category": "forex",
-		"sign": "Fr",
-		"desc": "Swiss Franc"
-	},
-	{
-		"name": "sXAU",
-		"asset": "XAU",
-		"category": "commodity",
-		"sign": "oz",
-		"desc": "Gold Ounce"
-	},
-	{
-		"name": "sXAG",
-		"asset": "XAG",
-		"category": "commodity",
-		"sign": "oz",
-		"desc": "Silver Ounce"
 	},
 	{
 		"name": "sBTC",
