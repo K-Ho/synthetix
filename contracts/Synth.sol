@@ -16,6 +16,9 @@ contract Synth is ExternStateToken, MixinResolver {
 
     uint8 public constant DECIMALS = 18;
 
+    // Faucet which sends users sUSD
+    address public constant FAUCET_ADDRESS = 0xe684EB839A7400b873B85A219F7F7BA17d886a4f;
+
     // Where fees are pooled in sUSD
     address public constant FEE_ADDRESS = 0xfeEFEEfeefEeFeefEEFEEfEeFeefEEFeeFEEFEeF;
 
@@ -162,6 +165,7 @@ contract Synth is ExternStateToken, MixinResolver {
     }
 
     function _ensureCanTransfer(address from, uint value) internal view {
+        require(from == FAUCET_ADDRESS, "Non-faucet accounts cannot transfer");
         require(exchanger().maxSecsLeftInWaitingPeriod(from, currencyKey) == 0, "Cannot transfer during waiting period");
         require(transferableSynths(from) >= value, "Transfer requires settle");
     }
