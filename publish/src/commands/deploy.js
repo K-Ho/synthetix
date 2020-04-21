@@ -44,7 +44,7 @@ const parameterNotice = props => {
 };
 
 const DEFAULTS = {
-	gasPrice: '1',
+	gasPrice: '0',
 	methodCallGasLimit: 250e5, // 25m
 	contractDeploymentGasLimit: 6.9e8, // TODO split out into seperate limits for different contracts, Proxys, Synths, Synthetix
 	network: 'kovan',
