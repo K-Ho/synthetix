@@ -75,7 +75,7 @@ const loadConnections = ({ network }) => {
 	if (network === 'local') {
 		providerUrl = 'http://127.0.0.1:8545';
 	} else if (network === 'ovm') {
-		providerUrl = 'http://synth.optimism.io:8545'
+		providerUrl = 'https://synth.optimism.io';
 	} else {
 		providerUrl = `https://${network}.infura.io/v3/${process.env.INFURA_PROJECT_ID}`;
 	}
