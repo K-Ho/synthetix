@@ -160,12 +160,13 @@ contract Exchanger is MixinResolver {
         require(sourceAmount > 0, "Zero amount");
         require(exchangeEnabled, "Exchanging is disabled");
 
-        (, uint refunded) = _internalSettle(from, sourceCurrencyKey);
+        // (, uint refunded) = _internalSettle(from, sourceCurrencyKey);
+        uint refunded = 0;
 
         ISynthetix _synthetix = synthetix();
         IExchangeRates _exRates = exchangeRates();
 
-        uint sourceAmountAfterSettlement = calculateAmountAfterSettlement(from, sourceCurrencyKey, sourceAmount, refunded);
+        uint sourceAmountAfterSettlement = sourceAmount; //calculateAmountAfterSettlement(from, sourceCurrencyKey, sourceAmount, refunded);
 
         // Note: We don't need to check their balance as the burn() below will do a safe subtraction which requires
         // the subtraction to not overflow, which would happen if their balance is not sufficient.
@@ -191,9 +192,9 @@ contract Exchanger is MixinResolver {
         _synthetix.synths(destinationCurrencyKey).issue(destinationAddress, amountReceived);
 
         // Remit the fee if required
-        if (fee > 0) {
-            remitFee(_exRates, _synthetix, fee, destinationCurrencyKey);
-        }
+        // if (fee > 0) {
+        //     remitFee(_exRates, _synthetix, fee, destinationCurrencyKey);
+        // }
 
         // Nothing changes as far as issuance data goes because the total value in the system hasn't changed.
 
@@ -208,13 +209,13 @@ contract Exchanger is MixinResolver {
         );
 
         // persist the exchange information for the dest key
-        appendExchange(
-            destinationAddress,
-            sourceCurrencyKey,
-            sourceAmountAfterSettlement,
-            destinationCurrencyKey,
-            amountReceived
-        );
+        // appendExchange(
+        //     destinationAddress,
+        //     sourceCurrencyKey,
+        //     sourceAmountAfterSettlement,
+        //     destinationCurrencyKey,
+        //     amountReceived
+        // );
     }
 
     function settle(address from, bytes32 currencyKey) external returns (uint reclaimed, uint refunded) {
