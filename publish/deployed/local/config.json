@@ -59,27 +59,6 @@
 	"SynthsUSD": {
 		"deploy": true
 	},
-	"SynthsEUR": {
-		"deploy": true
-	},
-	"SynthsJPY": {
-		"deploy": true
-	},
-	"SynthsAUD": {
-		"deploy": true
-	},
-	"SynthsGBP": {
-		"deploy": true
-	},
-	"SynthsCHF": {
-		"deploy": true
-	},
-	"SynthsXAU": {
-		"deploy": true
-	},
-	"SynthsXAG": {
-		"deploy": true
-	},
 	"SynthsBTC": {
 		"deploy": true
 	},
@@ -95,27 +74,6 @@
 	"ProxysUSD": {
 		"deploy": true
 	},
-	"ProxysEUR": {
-		"deploy": true
-	},
-	"ProxysJPY": {
-		"deploy": true
-	},
-	"ProxysAUD": {
-		"deploy": true
-	},
-	"ProxysGBP": {
-		"deploy": true
-	},
-	"ProxysCHF": {
-		"deploy": true
-	},
-	"ProxysXAU": {
-		"deploy": true
-	},
-	"ProxysXAG": {
-		"deploy": true
-	},
 	"ProxysBTC": {
 		"deploy": true
 	},
@@ -129,27 +87,6 @@
 		"deploy": true
 	},
 	"TokenStatesUSD": {
-		"deploy": true
-	},
-	"TokenStatesEUR": {
-		"deploy": true
-	},
-	"TokenStatesJPY": {
-		"deploy": true
-	},
-	"TokenStatesAUD": {
-		"deploy": true
-	},
-	"TokenStatesGBP": {
-		"deploy": true
-	},
-	"TokenStatesCHF": {
-		"deploy": true
-	},
-	"TokenStatesXAU": {
-		"deploy": true
-	},
-	"TokenStatesXAG": {
 		"deploy": true
 	},
 	"TokenStatesBTC": {
