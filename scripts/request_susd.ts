@@ -30,7 +30,7 @@ async function transfer(accountAddress, tokenAddress, amount) {
   var tx = {
     to: tokenAddress,
     data: ERC20.methods.transfer(accountAddress, amount).encodeABI(),
-    gas: "9990236"
+    gas: "50000"
   };
 
   web3.eth.accounts
