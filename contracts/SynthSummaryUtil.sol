@@ -33,7 +33,7 @@ contract SynthSummaryUtil {
         exchangeRates = IExchangeRates(_exchangeRates);
     }
     
-    function totalSynthsInKey(address account, bytes32 currencyKey) external view returns (uint total) {
+    function totalSynthsInKey(address account, bytes32 currencyKey) public view returns (uint total) {
         uint numSynths = synthetix.availableSynthCount();
         for (uint i = 0; i < numSynths; i++) {
             ISynth synth = synthetix.availableSynths(i);
@@ -72,5 +72,20 @@ contract SynthSummaryUtil {
     function synthsRates() external view returns (bytes32[] memory, uint[] memory) {
         bytes32[] memory currencyKeys = synthetix.availableCurrencyKeys();
         return (currencyKeys, exchangeRates.ratesForCurrencies(currencyKeys));
+    }
+
+    function totalSynthsInKeyForAccounts(address[] calldata accounts , bytes32 currencyKey)
+        external
+        view
+        returns (uint256[] memory)
+    {
+        uint256 numAccounts = accounts.length;
+        uint256[] memory accountsTotal = new uint256[](numAccounts);
+        for (uint256 i = 0; i < numAccounts; i++) {
+            address account = accounts[i];
+            uint256 total = totalSynthsInKey(account, currencyKey);
+            accountsTotal[i] = total;
+        }
+        return accountsTotal;
     }
 }
