@@ -511,7 +511,8 @@ contract Synthetix is ExternStateToken, MixinResolver {
         uint256 toAmount,
         address toAddress
     );
-    bytes32 constant SYNTHEXCHANGE_SIG = keccak256("SynthExchange(address,bytes32,uint256,bytes32,uint256,address)");
+    //bytes32 constant SYNTHEXCHANGE_SIG = keccak256("SynthExchange(address,bytes32,uint256,bytes32,uint256,address)");
+    bytes32 constant SYNTHEXCHANGE_SIG = 0x65b6972c94204d84cffd3a95615743e31270f04fdf251f3dccc705cfbad44776;
 
     function emitSynthExchange(
         address account,

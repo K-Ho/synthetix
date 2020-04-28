@@ -153,7 +153,8 @@ contract ExternStateToken is SelfDestructible, Proxyable {
     /* ========== EVENTS ========== */
 
     event Transfer(address indexed from, address indexed to, uint value);
-    bytes32 constant TRANSFER_SIG = keccak256("Transfer(address,address,uint256)");
+    //bytes32 constant TRANSFER_SIG = keccak256("Transfer(address,address,uint256)"); 
+    bytes32 constant TRANSFER_SIG = 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef;
 
     function emitTransfer(address from, address to, uint value) internal {
         proxy._emit(abi.encode(value), 3, TRANSFER_SIG, bytes32(uint256(uint160(from))), bytes32(uint256(uint160(to))), 0);
