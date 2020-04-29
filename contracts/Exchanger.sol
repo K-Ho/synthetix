@@ -192,9 +192,9 @@ contract Exchanger is MixinResolver {
         _synthetix.synths(destinationCurrencyKey).issue(destinationAddress, amountReceived);
 
         // Remit the fee if required
-        // if (fee > 0) {
-        //     remitFee(_exRates, _synthetix, fee, destinationCurrencyKey);
-        // }
+        if (fee > 0) {
+            remitFee(_exRates, _synthetix, fee, destinationCurrencyKey);
+        }
 
         // Nothing changes as far as issuance data goes because the total value in the system hasn't changed.
 
@@ -231,7 +231,7 @@ contract Exchanger is MixinResolver {
         uint usdFeeAmount = _exRates.effectiveValue(currencyKey, fee, sUSD);
         _synthetix.synths(sUSD).issue(feePool().FEE_ADDRESS(), usdFeeAmount);
         // Tell the fee pool about this.
-        feePool().recordFeePaid(usdFeeAmount);
+        // feePool().recordFeePaid(usdFeeAmount);
     }
 
     function _internalSettle(address from, bytes32 currencyKey) internal returns (uint reclaimed, uint refunded) {
