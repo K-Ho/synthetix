@@ -108,9 +108,9 @@
 		"desc": "Inverse Bitcoin",
 		"subclass": "PurgeableSynth",
 		"inverted": {
-			"entryPoint": 5275,
-			"upperLimit": 7912.5,
-			"lowerLimit": 2637.5
+			"entryPoint": 7124.91,
+			"upperLimit": 13537.329,
+			"lowerLimit": 712.491
 		}
 	},
 	{
@@ -122,8 +122,8 @@
 		"subclass": "PurgeableSynth",
 		"inverted": {
 			"entryPoint": 180.16,
-			"upperLimit": 270.24,
-			"lowerLimit": 90.08
+			"upperLimit": 342.304,
+			"lowerLimit": 18.016
 		}
 	},
 	{
@@ -135,8 +135,8 @@
 		"subclass": "PurgeableSynth",
 		"inverted": {
 			"entryPoint": 0.0101651,
-			"upperLimit": 0.0152476,
-			"lowerLimit": 0.0050825
+			"upperLimit": 0.0193136,
+			"lowerLimit": 0.0010165
 		}
 	},
 	{
@@ -147,9 +147,9 @@
 		"desc": "Inverse Tezos",
 		"subclass": "PurgeableSynth",
 		"inverted": {
-			"entryPoint": 2.270,
-			"upperLimit": 3.405,
-			"lowerLimit": 1.135
+			"entryPoint": 2.2700,
+			"upperLimit": 4.3130,
+			"lowerLimit": 0.2270
 		}
 	},
 	{
@@ -161,8 +161,8 @@
 		"subclass": "PurgeableSynth",
 		"inverted": {
 			"entryPoint": 0.15,
-			"upperLimit": 0.225,
-			"lowerLimit": 0.075
+			"upperLimit": 0.285,
+			"lowerLimit": 0.015
 		}
 	},
 	{
@@ -174,8 +174,8 @@
 		"subclass": "PurgeableSynth",
 		"inverted": {
 			"entryPoint": 3.66,
-			"upperLimit": 5.49,
-			"lowerLimit": 1.83
+			"upperLimit": 6.954,
+			"lowerLimit": 0.366
 		}
 	},
 	{
@@ -187,8 +187,8 @@
 		"subclass": "PurgeableSynth",
 		"inverted": {
 			"entryPoint": 35.66,
-			"upperLimit": 53.49,
-			"lowerLimit": 17.83
+			"upperLimit": 67.754,
+			"lowerLimit": 3.566
 		}
 	},
 	{
@@ -199,9 +199,9 @@
 		"desc": "Inverse EOS",
 		"subclass": "PurgeableSynth",
 		"inverted": {
-			"entryPoint": 2.22,
-			"upperLimit": 3.33,
-			"lowerLimit": 1.11
+			"entryPoint": 2.220,
+			"upperLimit": 4.218,
+			"lowerLimit": 0.222
 		}
 	},
 	{
@@ -212,9 +212,9 @@
 		"desc": "Inverse Bitcoin Cash",
 		"subclass": "PurgeableSynth",
 		"inverted": {
-			"entryPoint": 218.33,
-			"upperLimit": 327.495,
-			"lowerLimit": 109.165
+			"entryPoint": 218.330,
+			"upperLimit": 414.827,
+			"lowerLimit": 21.833
 		}
 	},
 	{
@@ -225,9 +225,9 @@
 		"desc": "Inverse Ethereum Classic",
 		"subclass": "PurgeableSynth",
 		"inverted": {
-			"entryPoint": 4.88,
-			"upperLimit": 7.32,
-			"lowerLimit": 2.44
+			"entryPoint": 4.880,
+			"upperLimit": 9.272,
+			"lowerLimit": 0.488
 		}
 	},
 	{
@@ -238,9 +238,9 @@
 		"desc": "Inverse Dash",
 		"subclass": "PurgeableSynth",
 		"inverted": {
-			"entryPoint": 64.44,
-			"upperLimit": 96.66,
-			"lowerLimit": 32.22
+			"entryPoint": 64.440,
+			"upperLimit": 122.436,
+			"lowerLimit": 6.444
 		}
 	},
 	{
@@ -251,9 +251,9 @@
 		"desc": "Inverse Monero",
 		"subclass": "PurgeableSynth",
 		"inverted": {
-			"entryPoint": 47.24,
-			"upperLimit": 70.86,
-			"lowerLimit": 23.62
+			"entryPoint": 47.240,
+			"upperLimit": 89.756,
+			"lowerLimit": 4.724
 		}
 	},
 	{
@@ -265,8 +265,8 @@
 		"subclass": "PurgeableSynth",
 		"inverted": {
 			"entryPoint": 0.031,
-			"upperLimit": 0.046,
-			"lowerLimit": 0.015
+			"upperLimit": 0.059,
+			"lowerLimit": 0.003
 		}
 	}
 ]
