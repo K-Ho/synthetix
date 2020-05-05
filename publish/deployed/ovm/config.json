@@ -212,6 +212,114 @@
 	"SynthiLTC": {
 		"deploy": true
 	},
+	"TokenStatesEOS": {
+		"deploy": true
+	},
+	"ProxysEOS": {
+		"deploy": true
+	},
+	"SynthsEOS": {
+		"deploy": true
+	},
+	"TokenStateiEOS": {
+		"deploy": true
+	},
+	"ProxyiEOS": {
+		"deploy": true
+	},
+	"SynthiEOS": {
+		"deploy": true
+	},
+	"TokenStatesBCH": {
+		"deploy": true
+	},
+	"ProxysBCH": {
+		"deploy": true
+	},
+	"SynthsBCH": {
+		"deploy": true
+	},
+	"TokenStateiBCH": {
+		"deploy": true
+	},
+	"ProxyiBCH": {
+		"deploy": true
+	},
+	"SynthiBCH": {
+		"deploy": true
+	},
+	"TokenStatesETC": {
+		"deploy": true
+	},
+	"ProxysETC": {
+		"deploy": true
+	},
+	"SynthsETC": {
+		"deploy": true
+	},
+	"TokenStateiETC": {
+		"deploy": true
+	},
+	"ProxyiETC": {
+		"deploy": true
+	},
+	"SynthiETC": {
+		"deploy": true
+	},
+	"TokenStatesDASH": {
+		"deploy": true
+	},
+	"ProxysDASH": {
+		"deploy": true
+	},
+	"SynthsDASH": {
+		"deploy": true
+	},
+	"TokenStateiDASH": {
+		"deploy": true
+	},
+	"ProxyiDASH": {
+		"deploy": true
+	},
+	"SynthiDASH": {
+		"deploy": true
+	},
+	"TokenStatesXMR": {
+		"deploy": true
+	},
+	"ProxysXMR": {
+		"deploy": true
+	},
+	"SynthsXMR": {
+		"deploy": true
+	},
+	"TokenStateiXMR": {
+		"deploy": true
+	},
+	"ProxyiXMR": {
+		"deploy": true
+	},
+	"SynthiXMR": {
+		"deploy": true
+	},
+	"TokenStatesADA": {
+		"deploy": true
+	},
+	"ProxysADA": {
+		"deploy": true
+	},
+	"SynthsADA": {
+		"deploy": true
+	},
+	"TokenStateiADA": {
+		"deploy": true
+	},
+	"ProxyiADA": {
+		"deploy": true
+	},
+	"SynthiADA": {
+		"deploy": true
+	},
 	"SynthSummaryUtil": {
 		"deploy": true
 	}
