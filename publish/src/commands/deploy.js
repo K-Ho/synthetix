@@ -1036,26 +1036,27 @@ const deploy = async ({
 					console.log(gray(`Detected a new inverted synth for ${currencyKey}. Proceeding to add.`));
 					// Then a new inverted synth is being added (as there's no previous rate for it)
 					await setInversePricing({ freeze: false, freezeAtUpperLimit: false });
-				} else if (Number(totalSynthSupply) === 0) {
+				} else {
 					console.log(
 						gray(
-							`Inverted synth at ${currencyKey} has 0 total supply and its inverted parameters have changed. ` +
+							`Inverted synth at ${currencyKey} has had its inverted parameters changed. ` +
 								`Proceeding to reconfigure its parameters as instructed, unfreezing it if currently frozen.`
 						)
 					);
 					// Then a new inverted synth is being added (as there's no existing supply)
 					await setInversePricing({ freeze: false, freezeAtUpperLimit: false });
-				} else {
-					// Then an existing synth's inverted parameters have changed.
-					// For safety sake, let's inform the user and skip this step
-					console.log(
-						redBright(
-							`⚠⚠⚠ WARNING: The parameters for the inverted synth ${currencyKey} ` +
-								`have changed and it has non-zero totalSupply. This use-case is not supported by the deploy script. ` +
-								`This should be done as a purge() and setInversePricing() separately`
-						)
-					);
 				}
+				// else {
+				// 	// Then an existing synth's inverted parameters have changed.
+				// 	// For safety sake, let's inform the user and skip this step
+				// 	console.log(
+				// 		redBright(
+				// 			`⚠⚠⚠ WARNING: The parameters for the inverted synth ${currencyKey} ` +
+				// 				`have changed and it has non-zero totalSupply. This use-case is not supported by the deploy script. ` +
+				// 				`This should be done as a purge() and setInversePricing() separately`
+				// 		)
+				// 	);
+				// }
 			} else {
 				// When no exrates, then totally fresh deploy (local deployment)
 				await setInversePricing({ freeze: false, freezeAtUpperLimit: false });
