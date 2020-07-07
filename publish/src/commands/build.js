@@ -60,43 +60,45 @@ const build = async ({ buildPath = DEFAULTS.buildPath, showWarnings, showContrac
 	let contractsWithOverride = {};
 	let allErrors = [];
 	let allWarnings = [];
-	Object.entries(CONTRACT_OVERRIDES).forEach(([key, value]) => {
-		console.log(green(`${key} with optimisation runs: ${value.runs}`));
-		const source = {
-			[key]: sources[key],
-		};
-		const { artifacts, errors, warnings } = compile({
-			sources: source,
-			useOVM,
-			runs: value.runs,
-		});
+	// Object.entries(CONTRACT_OVERRIDES).forEach(([key, value]) => {
+	// 	console.log(green(`${key} with optimisation runs: ${value.runs}`));
+	// 	const source = {
+	// 		[key]: sources[key],
+	// 	};
+	// 	const { artifacts, errors, warnings } = compile({
+	// 		sources: source,
+	// 		useOVM,
+	// 		runs: value.runs,
+	// 	});
 
-		contractsWithOverride = Object.assign(contractsWithOverride, artifacts);
-		allErrors = allErrors.concat(errors);
-		allWarnings = allWarnings.concat(warnings);
+	// 	contractsWithOverride = Object.assign(contractsWithOverride, artifacts);
+	// 	allErrors = allErrors.concat(errors);
+	// 	allWarnings = allWarnings.concat(warnings);
 
-		delete sources[key];
-	});
+	// 	delete sources[key];
+	// });
 
 	console.log(gray('Compiling remaining contracts...'));
 	// Note: compiling all contracts in one go like this is leading to issues
 	// such as: Runtime.functionPointers[index] is not a function.
 	let allArtifacts = contractsWithOverride
 	Object.entries(sources).forEach(([key, value]) => {
-		console.log(green(`${key}`));
-		const source = {
-			[key]: sources[key],
-		};
-		const { artifacts, errors, warnings } = compile({
-			sources: source,
-			useOVM
-		});
-		console.log(
-			yellow(`Compiled with ${warnings.length} warnings and ${errors.length} errors`)
-		);
-		allArtifacts = Object.assign(allArtifacts, artifacts);
-		allErrors = allErrors.concat(errors);
-		allWarnings = allWarnings.concat(warnings);
+		if(key == 'ExternStateToken.sol') {
+			console.log(green(`${key}`));
+			const source = {
+				[key]: sources[key],
+			};
+			const { artifacts, errors, warnings } = compile({
+				sources: source,
+				useOVM
+			});
+			console.log(
+				yellow(`Compiled with ${warnings.length} warnings and ${errors.length} errors`)
+			);
+			allArtifacts = Object.assign(allArtifacts, artifacts);
+			allErrors = allErrors.concat(errors);
+			allWarnings = allWarnings.concat(warnings);
+		}
 	});
 	const compiledPath = path.join(buildPath, COMPILED_FOLDER);
 
