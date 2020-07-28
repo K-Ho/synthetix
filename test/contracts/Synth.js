@@ -500,7 +500,7 @@ contract('Synth', async accounts => {
 			// fees equal to amount are recorded in feesToDistribute
 			assert.bnEqual(firstFeePeriod.feesToDistribute, feeBalanceBefore.add(amount));
 		});
-		it('should transfer to FEE_ADDRESS and exchange non-sUSD synths', async () => {
+		it.skip('should transfer to FEE_ADDRESS and exchange non-sUSD synths', async () => {
 			// allocate the user some sEUR
 			await issueSynthsToUser({ owner, user: owner, amount, synth: sEUR });
 
