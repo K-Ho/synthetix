@@ -29,13 +29,13 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    timeout: 3000000
+    timeout: 30000000
   },
 
   compilers: {
     solc: {
       // Add path to the solc-transpiler
-      version: "node_modules/@eth-optimism/solc-transpiler",
+      version: "native",
     }
   }
 }
