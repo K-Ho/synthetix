@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const solidifier = require('solidifier');
 const solc = require('solc');
-const solcTranspiler = require('@eth-optimism/solc-transpiler');
+const solcTranspiler = require('@eth-optimism/solc');
 const { COMPILED_FOLDER } = require('./constants');
 const { addSolidityHeader } = require('./solidity-header');
 
@@ -57,7 +57,7 @@ module.exports = {
 		const artifacts = [];
 		const solcVersion = useOVM ? solcTranspiler : solc
 		const output = JSON.parse(
-			solcVersion.compileStandardWrapper(
+			solcVersion.compile(
 				JSON.stringify({
 					language: 'Solidity',
 					settings: {

@@ -78,6 +78,7 @@
 		"@eth-optimism/ovm-truffle-provider-wrapper": "^0.0.1-alpha.25",
 		"@eth-optimism/rollup-full-node": "^0.0.1-alpha.25",
 		"@eth-optimism/solc-transpiler": "~0.0.1-alpha.25",
+		"@eth-optimism/solc": "0.5.16-alpha.0",
 		"ganache-cli": "6.9.1",
 		"glob": "^7.1.3",
 		"mkdirp": "^0.5.1",
