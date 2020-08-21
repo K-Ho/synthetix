@@ -1,12 +1,12 @@
 const HDWalletProvider = require("truffle-hdwallet-provider");
-const ProviderWrapper = require("@eth-optimism/ovm-truffle-provider-wrapper");
+// const ProviderWrapper = require("@eth-optimism/ovm-truffle-provider-wrapper");
 const mnemonic = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
 
 // Set this to the desired Execution Manager Address -- required for the transpiler
 process.env.EXECUTION_MANAGER_ADDRESS = process.env.EXECUTION_MANAGER_ADDRESS || "0xA193E42526F1FEA8C99AF609dcEabf30C1c29fAA";
 const gasPrice = process.env.OVM_DEFAULT_GAS_PRICE || 0;
-const gas = /*process.env.OVM_DEFAULT_GAS*/ 900000000;
-
+const gas = /*process.env.OVM_DEFAULT_GAS*/ 90000000;
+const { ganache } = require('@eth-optimism/ovm-toolchain')
 
 module.exports = {
   contracts_build_directory: './build/truffle',
@@ -20,7 +20,13 @@ module.exports = {
     test: {
       network_id: 108,
       provider: function() {
-        return ProviderWrapper.wrapProviderAndStartLocalNode(new HDWalletProvider(mnemonic, "http://127.0.0.1:8545/", 0, 10));
+        return ganache.provider({
+          mnemonic: mnemonic,
+          network_id: 108,
+          default_balance_ether: 100,
+          gasLimit: gas,
+          gasPrice,
+        })
       },
       gasPrice: gasPrice,
       gas: gas,
@@ -35,7 +41,7 @@ module.exports = {
   compilers: {
     solc: {
       // Add path to the solc-transpiler
-      version: "native",
+      version: "node_modules/@eth-optimism/solc",
     }
   }
 }
